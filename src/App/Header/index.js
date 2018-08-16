@@ -5,7 +5,7 @@ const AppHeader = () => (
   <AppBar position="static" color="primary">
     <Toolbar>
       <Typography variant="title" color="inherit">
-        Github Issues
+        Github Issues for React repository
       </Typography>
     </Toolbar>
   </AppBar>

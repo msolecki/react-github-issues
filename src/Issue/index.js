@@ -1,22 +1,64 @@
-import React from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Button, Card, CardActions, CardContent, Typography } from '@material-ui/core'
 
-const Issue = ({ title, desc }) => (
-  <Card>
-    <CardContent>
-      <Typography gutterBottom variant="headline" component="h3">
-        {title}
-      </Typography>
-      <Typography>
-        {desc}
-      </Typography>
-    </CardContent>
-    <CardActions>
-      <Button size="small" color="primary">
-        View
-      </Button>
-    </CardActions>
-  </Card>
-)
+class Issue extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      showDescription: false
+    }
+  }
+
+  showDescription = () => {
+    this.setState({
+      showDescription: true
+    })
+  }
+
+  hideDescription = () => {
+    this.setState({
+      showDescription: false
+    })
+  }
+
+  handleShowDescriptionButtonClick = () => {
+    if (this.state.showDescription) {
+      this.hideDescription()
+    }
+
+    if (!this.state.showDescription) {
+      this.showDescription()
+    }
+  }
+
+  render () {
+    const { title, status, description } = this.props
+    const { showDescription } = this.state
+    const issueDescription = <Typography>{description}</Typography>
+    const issueTitle = `${ title } - ${ status }`
+
+    return (
+      <Card>
+        <CardContent>
+          <Typography gutterBottom variant="headline" component="h3">{issueTitle}</Typography>
+          {showDescription && issueDescription}
+        </CardContent>
+        <CardActions>
+          <Button size="small" color="primary" onClick={this.handleShowDescriptionButtonClick}>
+            {showDescription ? 'Hide description' : 'Show description'}
+          </Button>
+        </CardActions>
+      </Card>
+    )
+  }
+}
+
+Issue.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
+}
 
 export default Issue

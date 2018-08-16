@@ -23,17 +23,20 @@ class App extends Component {
       {
         id: 0,
         title: 'test Title',
-        desc: 'desc'
+        description: 'desc',
+        status: 'active'
       },
       {
         id: 1,
         title: 'test Title 2',
-        desc: 'desc'
+        description: 'desc',
+        status: 'active'
       },
       {
         id: 2,
         title: 'test Title 3',
-        desc: 'desc'
+        description: 'desc',
+        status: 'cancelled'
       }
     ]
 
