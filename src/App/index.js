@@ -43,7 +43,7 @@ class App extends Component {
         <Grid container spacing={40}>
           <AppHeader />
 
-          {issues.map(issue => (
+          {issues && issues.map(issue => (
             <Grid item key={issue.id} sm={12}>
               <Issue {...issue} />
             </Grid>

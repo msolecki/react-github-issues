@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Button, Card, CardActions, CardContent, Typography } from '@material-ui/core'
+import { Card, Typography } from '@material-ui/core'
+import Actions from './Actions'
+import Content from './Content'
+import Header from './Header'
 
 class Issue extends Component {
   constructor (props) {
@@ -34,22 +37,15 @@ class Issue extends Component {
   }
 
   render () {
-    const { title, state, description } = this.props
+    const { title, description, createdAt, user, state } = this.props
     const { showDescription } = this.state
     const issueDescription = <Typography>{description}</Typography>
-    const issueTitle = `${ title } - ${ state }`
 
     return (
       <Card>
-        <CardContent>
-          <Typography gutterBottom variant="headline" component="h3">{issueTitle}</Typography>
-          {showDescription && issueDescription}
-        </CardContent>
-        <CardActions>
-          <Button size="small" color="primary" onClick={this.handleShowDescriptionButtonClick}>
-            {showDescription ? 'Hide description' : 'Show description'}
-          </Button>
-        </CardActions>
+        <Header userLogin={user.login} avatarUrl={user.avatar} issueCreatedDate={createdAt} state={state} />
+        <Content title={title} description={issueDescription} showDescription={showDescription} />
+        <Actions handleClick={this.handleShowDescriptionButtonClick} showDescription={showDescription} />
       </Card>
     )
   }
@@ -59,6 +55,8 @@ Issue.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   state: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
 }
 
 export default Issue

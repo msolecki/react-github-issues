@@ -15,7 +15,7 @@ export default class GithubClient {
         id: issue.id,
         title: issue.title,
         state: issue.state,
-        createdAt: issue.created_at,
+        createdAt: (new Date(issue.created_at)).toDateString(),
         description: issue.body,
         user: {
           login: issue.user.login,
