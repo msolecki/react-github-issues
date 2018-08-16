@@ -34,10 +34,10 @@ class Issue extends Component {
   }
 
   render () {
-    const { title, status, description } = this.props
+    const { title, state, description } = this.props
     const { showDescription } = this.state
     const issueDescription = <Typography>{description}</Typography>
-    const issueTitle = `${ title } - ${ status }`
+    const issueTitle = `${ title } - ${ state }`
 
     return (
       <Card>
@@ -58,7 +58,7 @@ class Issue extends Component {
 Issue.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  status: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
 }
 
 export default Issue

@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { Grid } from '@material-ui/core'
 import Issue from '../Issue'
 import AppHeader from './Header'
+import axios from 'axios'
 
 const styles = theme => ({
   layout: {
@@ -17,28 +18,42 @@ const styles = theme => ({
 })
 
 class App extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      issues: []
+    }
+  }
+
+  getIssues = async () => {
+    const response = await axios.get('https://api.github.com/repos/facebook/react/issues?state=all&sort=updated')
+
+    return response.data.map(issue => {
+      return {
+        id: issue.id,
+        title: issue.title,
+        state: issue.state,
+        createdAt: issue.created_at,
+        description: issue.body,
+        user: {
+          login: issue.user.login,
+          url: issue.user.url,
+          avatar: issue.user.avatar_url
+        }
+      }
+    })
+  }
+
+  async componentDidMount () {
+    const issues = await this.getIssues()
+
+    this.setState({ issues: issues })
+  }
+
   render () {
     const { classes } = this.props
-    const issues = [
-      {
-        id: 0,
-        title: 'test Title',
-        description: 'desc',
-        status: 'active'
-      },
-      {
-        id: 1,
-        title: 'test Title 2',
-        description: 'desc',
-        status: 'active'
-      },
-      {
-        id: 2,
-        title: 'test Title 3',
-        description: 'desc',
-        status: 'cancelled'
-      }
-    ]
+    const { issues } = this.state
 
     return (
       <div className={classes.layout}>
