@@ -8,7 +8,7 @@ const Header = ({ avatarUrl, userLogin, issueCreatedDate, state }) => (
       <Avatar aria-label="User" src={avatarUrl} />
     }
     title={userLogin}
-    subheader={`${issueCreatedDate} - ${state}`}
+    subheader={`created at ${issueCreatedDate}, actual state is:  ${state}`}
   />
 )
 
