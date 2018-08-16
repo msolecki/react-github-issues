@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { Grid } from '@material-ui/core'
 import Issue from '../Issue'
 import AppHeader from './Header'
-import axios from 'axios'
+import GithubClient from '../GithubClient'
 
 const styles = theme => ({
   layout: {
@@ -21,32 +21,15 @@ class App extends Component {
   constructor (props) {
     super(props)
 
+    this.githubClient = new GithubClient('facebook', 'react')
+
     this.state = {
       issues: []
     }
   }
 
-  getIssues = async () => {
-    const response = await axios.get('https://api.github.com/repos/facebook/react/issues?state=all&sort=updated')
-
-    return response.data.map(issue => {
-      return {
-        id: issue.id,
-        title: issue.title,
-        state: issue.state,
-        createdAt: issue.created_at,
-        description: issue.body,
-        user: {
-          login: issue.user.login,
-          url: issue.user.url,
-          avatar: issue.user.avatar_url
-        }
-      }
-    })
-  }
-
   async componentDidMount () {
-    const issues = await this.getIssues()
+    const issues = await this.githubClient.getIssues()
 
     this.setState({ issues: issues })
   }
