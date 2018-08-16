@@ -11,7 +11,7 @@ const Content = ({ title, description, showDescription }) => (
 
 Content.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.node.isRequired,
   showDescription: PropTypes.bool.isRequired,
 }
 
