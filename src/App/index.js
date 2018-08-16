@@ -31,7 +31,7 @@ class App extends Component {
   async componentDidMount () {
     const issues = await this.githubClient.getIssues()
 
-    this.setState({ issues: issues })
+    this.setState({ issues })
   }
 
   render () {

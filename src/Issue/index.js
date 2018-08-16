@@ -27,11 +27,13 @@ class Issue extends Component {
   }
 
   handleShowDescriptionButtonClick = () => {
-    if (this.state.showDescription) {
+    const { showDescription } = this.state
+
+    if (showDescription) {
       this.hideDescription()
     }
 
-    if (!this.state.showDescription) {
+    if (!showDescription) {
       this.showDescription()
     }
   }
