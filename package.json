@@ -2,19 +2,23 @@
   "name": "react-github-issues",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://msolecki.github.io/react-github-issues/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "lint": "eslint .",
     "test": "react-scripts test --env=jsdom",
     "coverage": "yarn test --coverage",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@material-ui/core": "^1.5.0",
     "axios": "^0.18.0",
     "babel-eslint": "^8.2.6",
     "classnames": "^2.2.6",
+    "gh-pages": "^1.2.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
