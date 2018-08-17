@@ -20,7 +20,6 @@
       "only-multiline"
     ],
     "operator-linebreak": 0,
-    "import/no-useless-path-segments": 0,
     "react/forbid-prop-types": 0,
     "object-curly-newline": 0
   },
