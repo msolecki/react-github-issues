@@ -19,8 +19,6 @@ describe('AppComponent', () => {
   it('renders without crashing', () => {
     const wrapper = shallow(<App />).dive()
 
-    console.log(wrapper)
-
     expect(wrapper.find(Grid).length).toEqual(1)
   })
 })
